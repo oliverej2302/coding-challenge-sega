@@ -10,27 +10,18 @@ public class Targets : MonoBehaviour
     Vector3 _maxPosition, _minPosition = Vector3.zero;
     float _currentSpeed = 0;
     Vector3 _targetMovePosition;
-    MeshRenderer _tartgetRender;
-    BoxCollider _targetColider;
     bool IsMoving = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _tartgetRender = GetComponent<MeshRenderer>();
-        _targetColider = GetComponent<BoxCollider>();
-    }
+    float _sqrLerpPositionReachedThreshold = 0.2f * 0.2f;
 
     //initialize target
     public void Init(bool m, Vector3 min, Vector3 max)
     {
         IsMoving = m;
-        _minPosition = max;
-        _maxPosition = min;
+        _minPosition = min;
+        _maxPosition = max;
         if (IsMoving)
         {
-            _currentSpeed = Random.Range(_minMoveSpeed, _maxMoveSpeed);
-            _targetMovePosition = new Vector3(Random.Range(_maxPosition.x, _minPosition.x), Random.Range(_maxPosition.y, _minPosition.y), Random.Range(_maxPosition.z, _minPosition.z));
+            SetNextTarget();
         }
     }
 
@@ -46,15 +37,20 @@ public class Targets : MonoBehaviour
         //Debug.Log("Is moving: " + IsMoving + " to position " + _targetMovePosition);
         if (IsMoving)
         {
-            float dist = Vector3.Distance(transform.position, _targetMovePosition);
-            if (dist <= 0.2f)
+            float sqrDist = (transform.position - _targetMovePosition).sqrMagnitude;
+            if (sqrDist <= _sqrLerpPositionReachedThreshold)
             {
-                _currentSpeed = Random.Range(_minMoveSpeed, _maxMoveSpeed);
-                _targetMovePosition = new Vector3(Random.Range(_maxPosition.x, _minPosition.x), Random.Range(_maxPosition.y, _minPosition.y), Random.Range(_maxPosition.z, _minPosition.z));
+                SetNextTarget();
             }
             Vector3 movePosition = Vector3.Lerp(transform.position, _targetMovePosition, Time.deltaTime * _currentSpeed);
             transform.position = movePosition;
         }
+    }
+
+    private void SetNextTarget()
+    {
+        _currentSpeed = Random.Range(_minMoveSpeed, _maxMoveSpeed);
+        _targetMovePosition = new Vector3(Random.Range(_minPosition.x, _maxPosition.x), Random.Range(_minPosition.y, _maxPosition.y), Random.Range(_minPosition.z, _maxPosition.z));
     }
 
     //Target hit by projectile

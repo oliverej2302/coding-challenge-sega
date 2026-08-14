@@ -13,9 +13,11 @@ public class TargetManager : MonoBehaviour
     float _spawnTimer = 0;
     float _spawnDelay = 0;
 
+    bool _isMovingTarget = true;
+
     //stress test controls
-    private bool _isStressTestEnabled = false;
-    private int stressTestTargetCount = 500;
+    private bool _isStressTestEnabled = true;
+    private int stressTestTargetCount = 750;
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +53,9 @@ public class TargetManager : MonoBehaviour
     //spawn target in random location
     void SpawnTarget()
     {
-        Vector3 spawnLoactaion = new Vector3(Random.Range(_maxPosition.x, _minPosition.x), Random.Range(_maxPosition.y, _minPosition.y), Random.Range(_maxPosition.z, _minPosition.z));
-        GameObject targetSpawned = (GameObject)Instantiate(_targetToSpawn, spawnLoactaion, Quaternion.identity);
+        Vector3 spawnLocation = new Vector3(Random.Range(_minPosition.x, _maxPosition.x), Random.Range(_minPosition.y, _maxPosition.y), Random.Range(_minPosition.z, _maxPosition.z));
+        GameObject targetSpawned = Instantiate(_targetToSpawn, spawnLocation, Quaternion.identity, transform);
         Targets t = targetSpawned.GetComponent<Targets>();
-        t.Init(true, _minPosition, _maxPosition);
-        targetSpawned.transform.parent = this.transform;
+        t.Init(_isMovingTarget, _minPosition, _maxPosition);
     }
 }
