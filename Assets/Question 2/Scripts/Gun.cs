@@ -20,13 +20,13 @@ public class Gun : MonoBehaviour
     }
 
     //Get input to fire gun
-    void FireGun(InputAction.CallbackContext context)
+    public void FireGun(InputAction.CallbackContext context)
     {
         if (_shotTimer >= DelayBetweenShots)
         {
             _shotTimer = 0;
-            GameObject spawnProjectile = (GameObject)Instantiate(_projectile, WeaponMuzzle.position, WeaponMuzzle.rotation);
-            spawnProjectile.transform.position += (spawnProjectile.transform.forward * _pojectileSpeed) * Time.deltaTime;
+            GameObject spawnProjectile = Instantiate(_projectile, WeaponMuzzle.position, WeaponMuzzle.rotation);
+            spawnProjectile.transform.position += spawnProjectile.transform.forward * _pojectileSpeed * Time.deltaTime;
         }
     }
 
