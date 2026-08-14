@@ -60,7 +60,6 @@ public class Targets : MonoBehaviour
     //Target hit by projectile
     public void TargetHit()
     {
-        _tartgetRender.enabled = false;
-        _targetColider.enabled = false;
+        Destroy(gameObject);
     }
 }
