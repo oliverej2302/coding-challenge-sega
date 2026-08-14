@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetManager : MonoBehaviour
@@ -16,7 +14,7 @@ public class TargetManager : MonoBehaviour
     bool _isMovingTarget = true;
 
     //stress test controls
-    private bool _isStressTestEnabled = true;
+    private bool _isStressTestEnabled = false;
     private int stressTestTargetCount = 750;
 
     // Start is called before the first frame update

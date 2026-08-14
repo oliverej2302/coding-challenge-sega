@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-    float _speed = 2000f;
+    float _speed = 8000f;
     float _lifetimeSeconds = 10f;
     float _lifetimeTimer = 0f;
 
