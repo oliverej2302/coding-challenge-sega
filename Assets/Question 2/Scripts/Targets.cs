@@ -5,9 +5,9 @@ using UnityEngine;
 public class Targets : MonoBehaviour
 {
     [SerializeField]
-    float _minMoveSpeed,_maxMoveSpeed = 1f;
+    float _minMoveSpeed, _maxMoveSpeed = 1f;
     [SerializeField]
-    Vector3 _maxPosition, _minPosition =Vector3.zero;
+    Vector3 _maxPosition, _minPosition = Vector3.zero;
     float _currentSpeed = 0;
     Vector3 _targetMovePosition;
     MeshRenderer _tartgetRender;
@@ -22,7 +22,7 @@ public class Targets : MonoBehaviour
     }
 
     //initialize target
-    public void Init(bool m,Vector3 min, Vector3 max)
+    public void Init(bool m, Vector3 min, Vector3 max)
     {
         IsMoving = m;
         _minPosition = max;
@@ -43,7 +43,7 @@ public class Targets : MonoBehaviour
     //Move Target
     void MoveTarget()
     {
-        Debug.Log("Is moving: " + IsMoving + " to position " + _targetMovePosition);
+        //Debug.Log("Is moving: " + IsMoving + " to position " + _targetMovePosition);
         if (IsMoving)
         {
             float dist = Vector3.Distance(transform.position, _targetMovePosition);

@@ -10,6 +10,12 @@ public class PlayerGunControls : MonoBehaviour
     float _CameraVerticalAngle = 0f;
     Vector2 _lookInput;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
