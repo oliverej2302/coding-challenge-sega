@@ -26,8 +26,8 @@ public class PlayerGunControls : MonoBehaviour
     void PlayerMovement()
     {
         Vector2 look = _lookInput * RotationSpeed * Time.deltaTime;
-        transform.Rotate(new Vector3(0f, (look.y), 0f), Space.Self);
-        _CameraVerticalAngle += look.x; 
+        transform.Rotate(new Vector3(0f, look.x, 0f), Space.Self);
+        _CameraVerticalAngle -= look.y;
         _CameraVerticalAngle = Mathf.Clamp(_CameraVerticalAngle, -89f, 89f);
         PlayerCamera.transform.localEulerAngles = new Vector3(_CameraVerticalAngle, 0, 0);
     }
