@@ -4501,8 +4501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponMuzzle: {fileID: 2071714206}
-  DelayBetweenShots: 0.5
-  _projectile: {fileID: 6008750945876454967, guid: 01d49225532017d49afc2376aaf7b3e4, type: 3}
+  DelayBetweenShotsSeconds: 1
+  _projectilePrefab: {fileID: 6008750945876454967, guid: 01d49225532017d49afc2376aaf7b3e4, type: 3}
 --- !u!1001 &1962709091
 PrefabInstance:
   m_ObjectHideFlags: 0
