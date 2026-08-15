@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Targets : MonoBehaviour
 {
+    [SerializeField] TargetManager targetManager;
     [SerializeField]
     float _minMoveSpeed, _maxMoveSpeed = 1f;
     [SerializeField]
@@ -12,8 +13,9 @@ public class Targets : MonoBehaviour
     float _sqrLerpPositionReachedThreshold = 0.2f * 0.2f;
 
     //initialize target
-    public void Init(bool m, Vector3 min, Vector3 max)
+    public void Init(TargetManager manager, bool m, Vector3 min, Vector3 max)
     {
+        targetManager = manager;
         IsMoving = m;
         _minPosition = min;
         _maxPosition = max;
@@ -21,6 +23,7 @@ public class Targets : MonoBehaviour
         {
             SetNextTarget();
         }
+        targetManager.ChangeTargetCount(1);
     }
 
     // Update is called once per frame
@@ -54,6 +57,7 @@ public class Targets : MonoBehaviour
     //Target hit by projectile
     public void TargetHit()
     {
+        targetManager.ChangeTargetCount(-1);
         Destroy(gameObject);
     }
 }

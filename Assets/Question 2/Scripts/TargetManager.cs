@@ -8,8 +8,11 @@ public class TargetManager : MonoBehaviour
     Vector3 _maxPosition, _minPosition = Vector3.zero;
     [SerializeField]
     float _minWaitToSpawn, _maxWaitToSpawn = 0;
+    TargetManager spawnedTargetsManager;
     float _spawnTimer = 0;
     float _spawnDelay = 0;
+    int _maxTargetCount = 20;
+    int _currentTargetCount = 0;
 
     bool _isMovingTarget = true;
 
@@ -20,9 +23,11 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnedTargetsManager = this;
         if (_isStressTestEnabled)
         {
-            for (int i = 0; i < stressTestTargetCount; i++)
+            _maxTargetCount = stressTestTargetCount;
+            for (int i = 0; i < _maxTargetCount; i++)
             {
                 SpawnTarget();
             }
@@ -41,11 +46,20 @@ public class TargetManager : MonoBehaviour
         if (_isStressTestEnabled) return;
         if (_spawnTimer >= _spawnDelay)
         {
+            if (_currentTargetCount < _maxTargetCount)
+            {
+                SpawnTarget();
+            }
             _spawnTimer = 0;
             _spawnDelay = Random.Range(_minWaitToSpawn, _maxWaitToSpawn);
-            SpawnTarget();
         }
         _spawnTimer += Time.deltaTime;
+    }
+
+    public void ChangeTargetCount(int value)
+    {
+        _currentTargetCount += value;
+        Debug.Log("Current count = " + _currentTargetCount);
     }
 
     //spawn target in random location
@@ -54,6 +68,6 @@ public class TargetManager : MonoBehaviour
         Vector3 spawnLocation = new Vector3(Random.Range(_minPosition.x, _maxPosition.x), Random.Range(_minPosition.y, _maxPosition.y), Random.Range(_minPosition.z, _maxPosition.z));
         GameObject targetSpawned = Instantiate(_targetToSpawn, spawnLocation, Quaternion.identity, transform);
         Targets t = targetSpawned.GetComponent<Targets>();
-        t.Init(_isMovingTarget, _minPosition, _maxPosition);
+        t.Init(spawnedTargetsManager, _isMovingTarget, _minPosition, _maxPosition);
     }
 }
