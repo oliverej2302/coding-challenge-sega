@@ -389,6 +389,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763422262830270207, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 763422262830270207, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 763422262830270207, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2241113781332978652, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LinearDamping
       value: 6
@@ -407,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -415,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalRotation.z
@@ -427,7 +439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2933864836941861466, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -465,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28f9aa2a533192469f0a77cf37771b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  modelWrapperTransform: {fileID: 1572180673}
 --- !u!114 &1572180672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +576,11 @@ MonoBehaviour:
   m_DefaultActionMap: Question1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!4 &1572180673 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 763422262830270207, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
+  m_PrefabInstance: {fileID: 1572180669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699849032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28f9aa2a533192469f0a77cf37771b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  modelWrapperTransform: {fileID: 1699849036}
 --- !u!114 &1699849035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +768,11 @@ MonoBehaviour:
   m_DefaultActionMap: Question1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!4 &1699849036 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9195729352378049565, guid: 71b0c4d1cbe87404c8d50c1010388ceb, type: 3}
+  m_PrefabInstance: {fileID: 1699849032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
