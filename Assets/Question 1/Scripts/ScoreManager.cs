@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField] PositionController positionController;
     [SerializeField] TMP_Text teamOneScoreCard;
     [SerializeField] TMP_Text teamTwoScoreCard;
     int teamOneGoalCount = 0;
@@ -27,7 +28,7 @@ public class ScoreManager : MonoBehaviour
         UpdateScore();
     }
 
-    public void IncreaseScore(int value, Team teamToIncreaseScore)
+    public void IncreaseScore(int value, Team teamToIncreaseScore, bool resetPositionsOnGoal)
     {
         switch (teamToIncreaseScore)
         {
@@ -42,6 +43,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         UpdateScore();
+        if (resetPositionsOnGoal)
+        {
+            positionController.ResetPositions();
+        }
     }
 }
 

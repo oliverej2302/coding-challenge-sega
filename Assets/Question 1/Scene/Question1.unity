@@ -377,7 +377,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &317187704
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1531,6 +1531,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 763422262830270207, guid: 2720f60a82f60cc44aa5404450bcd7a5, type: 3}
   m_PrefabInstance: {fileID: 1572180669}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1575822248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575822249}
+  - component: {fileID: 1575822250}
+  m_Layer: 0
+  m_Name: Position Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1575822249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575822248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575822250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575822248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df15695e424816342babe1b896645116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PositionController
+  playerOne: {fileID: 1699849033}
+  playerTwo: {fileID: 1572180670}
+  ball: {fileID: 317187702}
+  playerOneSpawnPosition: {x: -10, y: 0.5, z: 0}
+  playerTwoSpawnPosition: {x: 10, y: 0.5, z: 0}
+  ballSpawnPosition: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1677527694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1614,7 @@ MonoBehaviour:
   scoreManager: {fileID: 2010891758}
   goalsToAward: 1
   teamToAwardGoalTo: 0
+  resetPositionsOnGoal: 1
 --- !u!65 &1677527696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1805,7 +1856,7 @@ GameObject:
   - component: {fileID: 2010891759}
   - component: {fileID: 2010891758}
   m_Layer: 5
-  m_Name: Score Background
+  m_Name: Score Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1845,6 +1896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bc4bd455b2c7e43a3b7ada7e0a0515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+  positionController: {fileID: 1575822250}
   teamOneScoreCard: {fileID: 456398447}
   teamTwoScoreCard: {fileID: 1447868891}
 --- !u!114 &2010891759
@@ -1918,6 +1970,7 @@ MonoBehaviour:
   scoreManager: {fileID: 2010891758}
   goalsToAward: 1
   teamToAwardGoalTo: 1
+  resetPositionsOnGoal: 1
 --- !u!65 &2108564402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2047,3 +2100,4 @@ SceneRoots:
   - {fileID: 2121693296}
   - {fileID: 2108564403}
   - {fileID: 1677527697}
+  - {fileID: 1575822249}
