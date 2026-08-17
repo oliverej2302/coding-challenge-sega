@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Transform modelWrapperTransform;
+    Vector3 startingModelWrapperRotationEuler;
     float moveSpeed = 5f;
     float acceleration = 7f;
     float rotateSpeed = 0.03f;
@@ -15,6 +16,16 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startingModelWrapperRotationEuler = modelWrapperTransform.localEulerAngles;
+    }
+
+    public void ResetModelRotation()
+    {
+        if (currentRotateCall != null)
+        {
+            StopCoroutine(currentRotateCall);
+        }
+        modelWrapperTransform.localRotation = Quaternion.Euler(startingModelWrapperRotationEuler);
     }
 
     public void MovePlayer(InputAction.CallbackContext context)

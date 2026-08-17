@@ -6,6 +6,7 @@ public class PositionController : MonoBehaviour
     [SerializeField] GameObject ball;
     Rigidbody ballrb;
     public Vector3 playerOneSpawnPosition, playerTwoSpawnPosition;
+    [SerializeField] PlayerMovement playerOneController, playerTwoController;
     public Vector3 ballSpawnPosition;
 
     void Start()
@@ -17,6 +18,9 @@ public class PositionController : MonoBehaviour
     {
         playerOne.transform.position = playerOneSpawnPosition;
         playerTwo.transform.position = playerTwoSpawnPosition;
+
+        playerOneController.ResetModelRotation();
+        playerTwoController.ResetModelRotation();
 
 
         ballrb.linearVelocity = Vector3.zero;

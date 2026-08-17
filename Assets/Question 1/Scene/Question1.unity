@@ -1580,6 +1580,8 @@ MonoBehaviour:
   ball: {fileID: 317187702}
   playerOneSpawnPosition: {x: -10, y: 0.5, z: 0}
   playerTwoSpawnPosition: {x: 10, y: 0.5, z: 0}
+  playerOneController: {fileID: 1699849034}
+  playerTwoController: {fileID: 1572180671}
   ballSpawnPosition: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1677527694
 GameObject:
