@@ -701,6 +701,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Question1 UI",
+            "id": "8ad500ab-9432-4e9c-b69b-947f405de2b2",
+            "actions": [
+                {
+                    "name": "ToggleMenu",
+                    "type": "Button",
+                    "id": "9fc00bcb-23b5-46cc-81dc-e5f6f1e4b571",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f0f4e5ac-f46a-4a6b-bc77-fc392cf50516",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

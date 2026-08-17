@@ -787,6 +787,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Question1 UI"",
+            ""id"": ""8ad500ab-9432-4e9c-b69b-947f405de2b2"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""9fc00bcb-23b5-46cc-81dc-e5f6f1e4b571"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f0f4e5ac-f46a-4a6b-bc77-fc392cf50516"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -872,6 +900,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Question1 UI
+        m_Question1UI = asset.FindActionMap("Question1 UI", throwIfNotFound: true);
+        m_Question1UI_ToggleMenu = m_Question1UI.FindAction("ToggleMenu", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -879,6 +910,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Question1.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Question1.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Question2.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Question2.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Question1UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Question1UI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1359,6 +1391,102 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // Question1 UI
+    private readonly InputActionMap m_Question1UI;
+    private List<IQuestion1UIActions> m_Question1UIActionsCallbackInterfaces = new List<IQuestion1UIActions>();
+    private readonly InputAction m_Question1UI_ToggleMenu;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Question1 UI".
+    /// </summary>
+    public struct Question1UIActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public Question1UIActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Question1UI/ToggleMenu".
+        /// </summary>
+        public InputAction @ToggleMenu => m_Wrapper.m_Question1UI_ToggleMenu;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Question1UI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="Question1UIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(Question1UIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="Question1UIActions" />
+        public void AddCallbacks(IQuestion1UIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Question1UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Question1UIActionsCallbackInterfaces.Add(instance);
+            @ToggleMenu.started += instance.OnToggleMenu;
+            @ToggleMenu.performed += instance.OnToggleMenu;
+            @ToggleMenu.canceled += instance.OnToggleMenu;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="Question1UIActions" />
+        private void UnregisterCallbacks(IQuestion1UIActions instance)
+        {
+            @ToggleMenu.started -= instance.OnToggleMenu;
+            @ToggleMenu.performed -= instance.OnToggleMenu;
+            @ToggleMenu.canceled -= instance.OnToggleMenu;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="Question1UIActions.UnregisterCallbacks(IQuestion1UIActions)" />.
+        /// </summary>
+        /// <seealso cref="Question1UIActions.UnregisterCallbacks(IQuestion1UIActions)" />
+        public void RemoveCallbacks(IQuestion1UIActions instance)
+        {
+            if (m_Wrapper.m_Question1UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="Question1UIActions.AddCallbacks(IQuestion1UIActions)" />
+        /// <seealso cref="Question1UIActions.RemoveCallbacks(IQuestion1UIActions)" />
+        /// <seealso cref="Question1UIActions.UnregisterCallbacks(IQuestion1UIActions)" />
+        public void SetCallbacks(IQuestion1UIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Question1UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Question1UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="Question1UIActions" /> instance referencing this action map.
+    /// </summary>
+    public Question1UIActions @Question1UI => new Question1UIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1545,5 +1673,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Question1 UI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="Question1UIActions.AddCallbacks(IQuestion1UIActions)" />
+    /// <seealso cref="Question1UIActions.RemoveCallbacks(IQuestion1UIActions)" />
+    public interface IQuestion1UIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ToggleMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleMenu(InputAction.CallbackContext context);
     }
 }
