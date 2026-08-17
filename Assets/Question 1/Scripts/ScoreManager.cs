@@ -13,13 +13,18 @@ public class ScoreManager : MonoBehaviour
         ResetScore();
     }
 
+    public void UpdateScore()
+    {
+        teamOneScoreCard.text = teamOneGoalCount.ToString();
+        teamTwoScoreCard.text = teamTwoGoalCount.ToString();
+    }
+
     public void ResetScore()
     {
         teamOneGoalCount = 0;
         teamTwoGoalCount = 0;
 
-        teamOneScoreCard.text = teamOneGoalCount.ToString();
-        teamTwoScoreCard.text = teamTwoGoalCount.ToString();
+        UpdateScore();
     }
 
     public void IncreaseScore(int value, Team teamToIncreaseScore)
@@ -35,6 +40,8 @@ public class ScoreManager : MonoBehaviour
             default:
                 return;
         }
+
+        UpdateScore();
     }
 }
 
