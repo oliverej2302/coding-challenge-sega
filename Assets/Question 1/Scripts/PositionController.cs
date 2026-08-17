@@ -22,6 +22,8 @@ public class PositionController : MonoBehaviour
         playerOneController.ResetModelRotation();
         playerTwoController.ResetModelRotation();
 
+        playerOneController.KillExcessMomentum();
+        playerTwoController.KillExcessMomentum();
 
         ballrb.linearVelocity = Vector3.zero;
         ballrb.angularVelocity = Vector3.zero;

@@ -28,6 +28,12 @@ public class PlayerMovement : MonoBehaviour
         modelWrapperTransform.localRotation = Quaternion.Euler(startingModelWrapperRotationEuler);
     }
 
+    public void KillExcessMomentum()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
     public void MovePlayer(InputAction.CallbackContext context)
     {
         playerMovementInput = new Vector3(context.ReadValue<Vector2>().x, playerMovementInput.y, context.ReadValue<Vector2>().y);
